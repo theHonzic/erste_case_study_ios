@@ -6,6 +6,11 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CCA723132DCD3048003A1E1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CCA723122DCD3048003A1E1C /* Alamofire */; };
+		CCA723152DCD3048003A1E1C /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CCA723142DCD3048003A1E1C /* AlamofireDynamic */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CCA722CC2DCD0ED1003A1E1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +57,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA723132DCD3048003A1E1C /* Alamofire in Frameworks */,
+				CCA723152DCD3048003A1E1C /* AlamofireDynamic in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +119,8 @@
 			);
 			name = "Open Books";
 			packageProductDependencies = (
+				CCA723122DCD3048003A1E1C /* Alamofire */,
+				CCA723142DCD3048003A1E1C /* AlamofireDynamic */,
 			);
 			productName = "Open Books";
 			productReference = CCA722BE2DCD0ED1003A1E1C /* Open Books.app */;
@@ -195,6 +204,9 @@
 			);
 			mainGroup = CCA722B52DCD0ED1003A1E1C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CCA722BF2DCD0ED1003A1E1C /* Products */;
 			projectDirPath = "";
@@ -566,6 +578,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCA723122DCD3048003A1E1C /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
+		CCA723142DCD3048003A1E1C /* AlamofireDynamic */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = AlamofireDynamic;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCA722B62DCD0ED1003A1E1C /* Project object */;
 }
