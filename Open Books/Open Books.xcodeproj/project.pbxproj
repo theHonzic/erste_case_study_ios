@@ -7,10 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		CCA723132DCD3048003A1E1C /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CCA723122DCD3048003A1E1C /* Alamofire */; };
-		CCA723152DCD3048003A1E1C /* AlamofireDynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CCA723142DCD3048003A1E1C /* AlamofireDynamic */; };
-		CCA723182DCD3265003A1E1C /* Swinject in Frameworks */ = {isa = PBXBuildFile; productRef = CCA723172DCD3265003A1E1C /* Swinject */; };
-		CCA7231A2DCD3265003A1E1C /* Swinject-Dynamic in Frameworks */ = {isa = PBXBuildFile; productRef = CCA723192DCD3265003A1E1C /* Swinject-Dynamic */; };
+		CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = CCA7234C2DCD407A003A1E1C /* Factory */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -59,10 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCA723132DCD3048003A1E1C /* Alamofire in Frameworks */,
-				CCA7231A2DCD3265003A1E1C /* Swinject-Dynamic in Frameworks */,
-				CCA723152DCD3048003A1E1C /* AlamofireDynamic in Frameworks */,
-				CCA723182DCD3265003A1E1C /* Swinject in Frameworks */,
+				CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -123,10 +117,7 @@
 			);
 			name = "Open Books";
 			packageProductDependencies = (
-				CCA723122DCD3048003A1E1C /* Alamofire */,
-				CCA723142DCD3048003A1E1C /* AlamofireDynamic */,
-				CCA723172DCD3265003A1E1C /* Swinject */,
-				CCA723192DCD3265003A1E1C /* Swinject-Dynamic */,
+				CCA7234C2DCD407A003A1E1C /* Factory */,
 			);
 			productName = "Open Books";
 			productReference = CCA722BE2DCD0ED1003A1E1C /* Open Books.app */;
@@ -211,8 +202,7 @@
 			mainGroup = CCA722B52DCD0ED1003A1E1C;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
-				CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */,
-				CCA723162DCD3265003A1E1C /* XCRemoteSwiftPackageReference "Swinject" */,
+				CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CCA722BF2DCD0ED1003A1E1C /* Products */;
@@ -587,44 +577,21 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+		CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			repositoryURL = "https://github.com/hmlongco/Factory";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.10.2;
-			};
-		};
-		CCA723162DCD3265003A1E1C /* XCRemoteSwiftPackageReference "Swinject" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/Swinject/Swinject.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.9.1;
+				minimumVersion = 2.4.3;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		CCA723122DCD3048003A1E1C /* Alamofire */ = {
+		CCA7234C2DCD407A003A1E1C /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = Alamofire;
-		};
-		CCA723142DCD3048003A1E1C /* AlamofireDynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CCA723112DCD3048003A1E1C /* XCRemoteSwiftPackageReference "Alamofire" */;
-			productName = AlamofireDynamic;
-		};
-		CCA723172DCD3265003A1E1C /* Swinject */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CCA723162DCD3265003A1E1C /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = Swinject;
-		};
-		CCA723192DCD3265003A1E1C /* Swinject-Dynamic */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = CCA723162DCD3265003A1E1C /* XCRemoteSwiftPackageReference "Swinject" */;
-			productName = "Swinject-Dynamic";
+			package = CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

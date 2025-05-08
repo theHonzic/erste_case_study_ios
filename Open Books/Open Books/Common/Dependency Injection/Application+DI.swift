@@ -6,18 +6,18 @@
 //
 
 import Foundation
-import Swinject
+import Factory
 
-extension Open_BooksApp {
-    func configureSwinject() {
-        let container = Container()
-        
-        // Register your dependencies here
-        container.register(TransparentAccountAPIManaging.self) { _ in
-            TransparentAccountAPIManager()
-        }
-        container.register(TransparentAccountRepositoryType.self) { resolver in
-            TransparentAccountRepository(apiManager: resolver.resolve(TransparentAccountAPIManaging.self)!)
-        }
+extension Container {
+    var transparentAccountAPIManager: Factory<TransparentAccountAPIManaging> {
+        self { TransparentAccountAPIManager() }
+    }
+    
+    var transparentAccountRepository: Factory<TransparentAccountRepositoryType> {
+        self { TransparentAccountRepository() }
+    }
+    
+    var aboutViewModel: Factory<AboutViewModel> {
+        self { AboutViewModel() }
     }
 }

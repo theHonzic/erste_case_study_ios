@@ -17,6 +17,7 @@ final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
                 case .success:
                     completion(.success(true))
                 case .failure(let error):
+                    print("Error: \(error)")
                     completion(.failure(error))
                 }
             }
