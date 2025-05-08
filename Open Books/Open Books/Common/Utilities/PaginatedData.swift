@@ -7,11 +7,11 @@
 
 import Foundation
 
-struct PaginatedData<T: Codable>: Codable {
+struct PaginatedData<T> {
     let items: [T]
     let pageNumber: Int
     let pageSize: Int
     let pageCount: Int
-    let nextPage: Int
+    let nextPage: Int?
     let recordCount: Int
 }
