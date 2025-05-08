@@ -8,7 +8,7 @@
 import Alamofire
 import Foundation
 
-class TransparentAccountAPIManager: TransparentAccountAPIManaging {
+final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
     func fetchHealthCheck(completion: @escaping (Result<Bool, any Error>) -> Void) {
         AF.request(TransparentAccountEndpoint.healthCheck.path)
             .validate()
