@@ -9,4 +9,5 @@ import Foundation
 
 protocol TransparentAccountRepositoryType {
     func fetchHealthCheck(completion: @escaping (Result<Bool, Error>) -> Void)
+    func fetchAccounts(page: Int, completion: @escaping (Result<PaginatedData<TransparentAccount>, Error>) -> Void)
 }

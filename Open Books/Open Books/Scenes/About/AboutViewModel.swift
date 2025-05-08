@@ -9,20 +9,20 @@ import Factory
 import Foundation
 
 final class AboutViewModel: ObservableObject {
-    @Published var isApiAvailable: Bool = true
+    @Published var data: Any?
     
     private let repository: TransparentAccountRepositoryType = Container.shared.transparentAccountRepository.resolve()
     
     init() {
-        repository.fetchHealthCheck { [weak self] result in
+        repository.fetchAccounts(page: 1) { [weak self] result in
             switch result {
-            case .success(let isAvailable):
+            case .success(let data):
                 DispatchQueue.main.async {
-                    self?.isApiAvailable = isAvailable
+                    self?.data = data
                 }
             case .failure:
                 DispatchQueue.main.async {
-                    self?.isApiAvailable = false
+                    self?.data = nil
                 }
             }
         }
