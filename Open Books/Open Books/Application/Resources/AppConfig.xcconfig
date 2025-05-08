@@ -1,0 +1,9 @@
+//
+//  AppConfig.xcconfig
+//  Open Books
+//
+//  Created by Jan Janovec on 08.05.2025.
+//
+
+BASE_URL = https:/$()/www.csas.cz/webapi/api/v3/transparentAccounts/
+API_KEY = YOUR_API_KEY
