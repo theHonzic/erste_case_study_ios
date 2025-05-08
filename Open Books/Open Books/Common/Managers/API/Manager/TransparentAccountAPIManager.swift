@@ -10,7 +10,7 @@ import Foundation
 
 final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
     func fetchHealthCheck(completion: @escaping (Result<Bool, any Error>) -> Void) {
-        AF.request(TransparentAccountEndpoint.healthCheck.path)
+        AF.request(TransparentAccountEndpoint.healthCheck.path, headers: .defaultHeaders)
             .validate()
             .response { response in
                 switch response.result {
