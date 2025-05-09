@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC7443522DCE9F08003C70DB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC7443512DCE9F08003C70DB /* Alamofire */; };
 		CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = CCA7234C2DCD407A003A1E1C /* Factory */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */,
+				CC7443522DCE9F08003C70DB /* Alamofire in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -118,6 +120,7 @@
 			name = "Open Books";
 			packageProductDependencies = (
 				CCA7234C2DCD407A003A1E1C /* Factory */,
+				CC7443512DCE9F08003C70DB /* Alamofire */,
 			);
 			productName = "Open Books";
 			productReference = CCA722BE2DCD0ED1003A1E1C /* Open Books.app */;
@@ -203,6 +206,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */,
+				CC7443502DCE9F08003C70DB /* XCRemoteSwiftPackageReference "Alamofire" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CCA722BF2DCD0ED1003A1E1C /* Products */;
@@ -577,6 +581,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CC7443502DCE9F08003C70DB /* XCRemoteSwiftPackageReference "Alamofire" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/Alamofire/Alamofire.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.10.2;
+			};
+		};
 		CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Factory";
@@ -588,6 +600,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CC7443512DCE9F08003C70DB /* Alamofire */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC7443502DCE9F08003C70DB /* XCRemoteSwiftPackageReference "Alamofire" */;
+			productName = Alamofire;
+		};
 		CCA7234C2DCD407A003A1E1C /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */;
