@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = CCA7234C2DCD407A003A1E1C /* Factory */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		CCA722CC2DCD0ED1003A1E1C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -52,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -112,6 +117,7 @@
 			);
 			name = "Open Books";
 			packageProductDependencies = (
+				CCA7234C2DCD407A003A1E1C /* Factory */,
 			);
 			productName = "Open Books";
 			productReference = CCA722BE2DCD0ED1003A1E1C /* Open Books.app */;
@@ -195,6 +201,9 @@
 			);
 			mainGroup = CCA722B52DCD0ED1003A1E1C;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CCA722BF2DCD0ED1003A1E1C /* Products */;
 			projectDirPath = "";
@@ -566,6 +575,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hmlongco/Factory";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.4.3;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CCA7234C2DCD407A003A1E1C /* Factory */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */;
+			productName = Factory;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CCA722B62DCD0ED1003A1E1C /* Project object */;
 }
