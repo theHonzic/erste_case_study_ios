@@ -14,7 +14,7 @@ final class AboutViewModel: ObservableObject {
     private let repository: TransparentAccountRepositoryType = Container.shared.transparentAccountRepository.resolve()
     
     init() {
-        repository.fetchAccounts(page: 1) { [weak self] result in
+        repository.fetchAccountDetails(accountId: "000000-3840968309") { [weak self] result in
             switch result {
             case .success(let data):
                 DispatchQueue.main.async {

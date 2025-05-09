@@ -10,7 +10,11 @@ import Foundation
 
 final class TransparentAccountRepository: TransparentAccountRepositoryType {
     private let apiManager: TransparentAccountAPIManaging = Container.shared.transparentAccountAPIManager.resolve()
-
+    
+    func fetchHealthCheck(completion: @escaping (Result<Bool, Error>) -> Void) {
+        return apiManager.fetchHealthCheck(completion: completion)
+    }
+    
     func fetchAccounts(page: Int, completion: @escaping (Result<PaginatedData<TransparentAccount>, any Error>) -> Void) {
         apiManager
             .fetchTransparentAccounts(page: page, size: .DEFAULT_PAGE_SIZE) { result in
@@ -19,7 +23,7 @@ final class TransparentAccountRepository: TransparentAccountRepositoryType {
                     completion(
                         .success(
                             .init(
-                                items: response.accounts.map({ $0.toDomain() }),
+                                items: response.accounts.compactMap { $0.toDomain() },
                                 pageNumber: response.pageNumber,
                                 pageSize: response.pageSize,
                                 pageCount: response.pageCount,
@@ -34,7 +38,19 @@ final class TransparentAccountRepository: TransparentAccountRepositoryType {
             }
     }
     
-    func fetchHealthCheck(completion: @escaping (Result<Bool, Error>) -> Void) {
-        return apiManager.fetchHealthCheck(completion: completion)
+    func fetchAccountDetails(accountId: String, completion: @escaping (Result<TransparentAccount, any Error>) -> Void) {
+        apiManager.fetchTransparentAccountDetails(accountId: accountId) { result in
+            switch result {
+            case .success(let response):
+                guard let account = response.toDomain() else {
+                    completion(.failure(APIError.currencyIsMissing))
+                    return
+                }
+                
+                completion(.success(account))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
     }
 }
