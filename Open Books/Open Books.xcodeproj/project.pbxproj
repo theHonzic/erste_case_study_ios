@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		CC7443522DCE9F08003C70DB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = CC7443512DCE9F08003C70DB /* Alamofire */; };
+		CC7443BC2DCF43D9003C70DB /* RealmSwift in Frameworks */ = {isa = PBXBuildFile; productRef = CC7443BB2DCF43D9003C70DB /* RealmSwift */; };
 		CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */ = {isa = PBXBuildFile; productRef = CCA7234C2DCD407A003A1E1C /* Factory */; };
 /* End PBXBuildFile section */
 
@@ -57,6 +58,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC7443BC2DCF43D9003C70DB /* RealmSwift in Frameworks */,
 				CCA7234D2DCD407A003A1E1C /* Factory in Frameworks */,
 				CC7443522DCE9F08003C70DB /* Alamofire in Frameworks */,
 			);
@@ -121,6 +123,7 @@
 			packageProductDependencies = (
 				CCA7234C2DCD407A003A1E1C /* Factory */,
 				CC7443512DCE9F08003C70DB /* Alamofire */,
+				CC7443BB2DCF43D9003C70DB /* RealmSwift */,
 			);
 			productName = "Open Books";
 			productReference = CCA722BE2DCD0ED1003A1E1C /* Open Books.app */;
@@ -207,6 +210,7 @@
 			packageReferences = (
 				CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */,
 				CC7443502DCE9F08003C70DB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				CC7443BA2DCF43D9003C70DB /* XCRemoteSwiftPackageReference "realm-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = CCA722BF2DCD0ED1003A1E1C /* Products */;
@@ -589,6 +593,14 @@
 				minimumVersion = 5.10.2;
 			};
 		};
+		CC7443BA2DCF43D9003C70DB /* XCRemoteSwiftPackageReference "realm-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/realm/realm-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		CCA7234B2DCD407A003A1E1C /* XCRemoteSwiftPackageReference "Factory" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hmlongco/Factory";
@@ -604,6 +616,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = CC7443502DCE9F08003C70DB /* XCRemoteSwiftPackageReference "Alamofire" */;
 			productName = Alamofire;
+		};
+		CC7443BB2DCF43D9003C70DB /* RealmSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CC7443BA2DCF43D9003C70DB /* XCRemoteSwiftPackageReference "realm-swift" */;
+			productName = RealmSwift;
 		};
 		CCA7234C2DCD407A003A1E1C /* Factory */ = {
 			isa = XCSwiftPackageProductDependency;
