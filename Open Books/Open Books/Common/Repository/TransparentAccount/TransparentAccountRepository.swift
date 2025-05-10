@@ -23,7 +23,7 @@ final class TransparentAccountRepository: TransparentAccountRepositoryType {
                     completion(
                         .success(
                             .init(
-                                items: response.accounts.compactMap { $0.toDomain() },
+                                items: response.accounts.compactMap { .init(from: $0) },
                                 pageNumber: response.pageNumber,
                                 pageSize: response.pageSize,
                                 pageCount: response.pageCount,
@@ -42,7 +42,7 @@ final class TransparentAccountRepository: TransparentAccountRepositoryType {
         apiManager.fetchTransparentAccountDetails(accountId: accountId) { result in
             switch result {
             case .success(let response):
-                guard let account = response.toDomain() else {
+                guard let account = TransparentAccount(from: response) else {
                     completion(.failure(APIError.currencyIsMissing))
                     return
                 }
