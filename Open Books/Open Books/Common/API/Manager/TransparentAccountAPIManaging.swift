@@ -5,6 +5,7 @@
 //  Created by Jan Janovec on 08.05.2025.
 //
 
+import Factory
 import Foundation
 
 protocol TransparentAccountAPIManaging {
@@ -27,4 +28,12 @@ protocol TransparentAccountAPIManaging {
     ///  - Returns: A `AccountDTO` object containing the details of the transparent account.
     ///  - Note: This method is used to fetch details of a specific transparent account.
     func fetchTransparentAccountDetails(accountId: String, completion: @escaping (Result<AccountDTO, Error>) -> Void)
+}
+
+// MARK: - Dependency Injection
+extension Container {
+    var transparentAccountAPIManager: Factory<TransparentAccountAPIManaging> {
+        self { TransparentAccountAPIManager() }
+            .singleton
+    }
 }

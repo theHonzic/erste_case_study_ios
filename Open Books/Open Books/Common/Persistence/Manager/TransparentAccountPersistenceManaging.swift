@@ -16,6 +16,7 @@ protocol TransparentAccountPersistenceManaging {
     func clearAccounts() throws
 }
 
+// MARK: - Dependency Injection
 extension Container {
     var transparentAccountPersistenceManager: Factory<TransparentAccountPersistenceManaging> {
         self { TransparentAccountPersistenceManager(realm: try? Realm()) }.singleton
