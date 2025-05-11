@@ -9,5 +9,4 @@ import Foundation
 
 enum Screen: Hashable {
     case accountDetails(id: String)
-    case donation(id: String)
 }
