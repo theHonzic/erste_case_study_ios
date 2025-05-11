@@ -24,7 +24,7 @@ final class TransparentAccountAPIManager {
 
 extension TransparentAccountAPIManager: TransparentAccountAPIManaging {
     func fetchTransparentAccounts(page: Int, size: Int, completion: @escaping (Result<AccountPagedResponseDTO, any Error>) -> Void) {
-        AF.request(TransparentAccountEndpoint.accounts.path, headers: .defaultHeaders)
+        AF.request(TransparentAccountEndpoint.accounts(page: page, size: size).path, headers: .defaultHeaders)
             .validate()
             .responseDecodable(of: AccountPagedResponseDTO.self, decoder: decoder) { response in
                 switch response.result {
@@ -58,6 +58,20 @@ extension TransparentAccountAPIManager: TransparentAccountAPIManaging {
                 switch response.result {
                 case .success:
                     completion(.success(true))
+                case .failure(let error):
+                    print("Error: \(error)")
+                    completion(.failure(error))
+                }
+            }
+    }
+    
+    func fetchAccountTransactions(accountId: String, page: Int, size: Int, completion: @escaping (Result<TransactionPagedResponseDTO, any Error>) -> Void) {
+        AF.request(TransparentAccountEndpoint.transactions(accountId: accountId, page: page, size: size).path, headers: .defaultHeaders)
+            .validate()
+            .responseDecodable(of: TransactionPagedResponseDTO.self, decoder: decoder) { response in
+                switch response.result {
+                case .success(let transactions):
+                    completion(.success(transactions))
                 case .failure(let error):
                     print("Error: \(error)")
                     completion(.failure(error))

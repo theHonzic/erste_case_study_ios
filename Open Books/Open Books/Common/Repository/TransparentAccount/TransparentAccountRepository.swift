@@ -13,7 +13,7 @@ final class TransparentAccountRepository {
     private let persistenceManager: TransparentAccountPersistenceManaging = Container.shared.transparentAccountPersistenceManager()
 }
 
-extension TransparentAccountRepository: TransparentAccountRepositoryType {
+extension TransparentAccountRepository: TransparentAccountRepositoryProtocol {
     func fetchCachedAccounts(completion: @escaping (Result<PaginatedData<TransparentAccount>, any Error>) -> Void) {
         persistenceManager.getAccounts { result in
             switch result {
@@ -72,6 +72,28 @@ extension TransparentAccountRepository: TransparentAccountRepositoryType {
                 try? self.persistenceManager.saveAccount(account)
                 
                 completion(.success(account))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchAccountTransactions(accountId: String, page: Int, completion: @escaping (Result<PaginatedData<Transaction>, any Error>) -> Void) {
+        apiManager.fetchAccountTransactions(accountId: accountId, page: page, size: .DEFAULT_PAGE_SIZE) { result in
+            switch result {
+            case .success(let response):
+                completion(
+                    .success(
+                        .init(
+                            items: response.transactions.compactMap { .init(from: $0) },
+                            pageNumber: response.pageNumber,
+                            pageSize: response.pageSize,
+                            pageCount: response.pageCount,
+                            nextPage: response.nextPage,
+                            recordCount: response.recordCount
+                        )
+                    )
+                )
             case .failure(let error):
                 completion(.failure(error))
             }
