@@ -9,15 +9,19 @@ import Factory
 import SwiftUI
 
 struct ContentView: View {
-    @StateObject private var viewModel: AboutViewModel = Container.shared.aboutViewModel.resolve()
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("\(viewModel.data)")
+        NavigationStack {
+            AccountListingView()
+                .navigationDestination(for: Screen.self) { screen in
+                    switch screen {
+                    case .accountDetails(let accountId):
+                        AccountDetailsView()
+                    case .donation(let accountId):
+                        DonationView()
+                    }
+                }
         }
-        .padding()
+        
     }
 }
 
