@@ -8,7 +8,6 @@
 import Foundation
 
 enum UiState<T> {
-    case empty
     case loading
     case success(T, Bool = false)
     case error(Error)
