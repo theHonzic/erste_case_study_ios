@@ -57,6 +57,7 @@ struct AccountRowView: View {
                     Text(description)
                         .font(.subheadline)
                         .foregroundColor(.secondary)
+                        .multilineTextAlignment(.leading)
                         .lineLimit(2)
                         .padding(.leading, 52) // Align with the name
                 }
