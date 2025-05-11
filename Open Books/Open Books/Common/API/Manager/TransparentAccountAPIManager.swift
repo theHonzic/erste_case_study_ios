@@ -8,18 +8,21 @@
 import Alamofire
 import Foundation
 
-final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
+final class TransparentAccountAPIManager {
     let decoder: JSONDecoder = {
-            let decoder = JSONDecoder()
-            
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
-            dateFormatter.timeZone = TimeZone(identifier: "CET")
-            
-            decoder.dateDecodingStrategy = .formatted(dateFormatter)
-            
-            return decoder
-        }()
+        let decoder = JSONDecoder()
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+        dateFormatter.timeZone = TimeZone(identifier: "CET")
+        
+        decoder.dateDecodingStrategy = .formatted(dateFormatter)
+        
+        return decoder
+    }()
+}
+
+extension TransparentAccountAPIManager: TransparentAccountAPIManaging {
     func fetchTransparentAccounts(page: Int, size: Int, completion: @escaping (Result<AccountPagedResponseDTO, any Error>) -> Void) {
         AF.request(TransparentAccountEndpoint.accounts.path, headers: .defaultHeaders)
             .validate()
@@ -62,3 +65,4 @@ final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
             }
     }
 }
+
