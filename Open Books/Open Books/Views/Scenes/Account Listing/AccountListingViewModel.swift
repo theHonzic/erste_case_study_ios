@@ -18,9 +18,9 @@ final class AccountListingViewModel: ObservableObject {
         return data.nextPage ?? 0
     }
     
-    private let repository: TransparentAccountRepositoryType
+    private let repository: TransparentAccountRepositoryProtocol
     
-    init(repository: TransparentAccountRepositoryType) {
+    init(repository: TransparentAccountRepositoryProtocol) {
         self.repository = repository
     }
 }
@@ -28,9 +28,13 @@ final class AccountListingViewModel: ObservableObject {
 // MARK: - Public Methods
 extension AccountListingViewModel {
     func onAppear() {
-        if !isDataInitialized {
-            onFirstAppear()
+        repository.fetchCachedAccounts { [weak self] result in
+            if let data = try? result.get() {
+                self?.accounts = .success(data)
+            }
         }
+        
+        fetchFromNetwork()
     }
     
     func onRefresh() {
@@ -48,16 +52,6 @@ extension AccountListingViewModel {
 
 // MARK: - Private Methods
 extension AccountListingViewModel {
-    private func onFirstAppear() {
-        repository.fetchCachedAccounts { [weak self] result in
-            if let data = try? result.get() {
-                self?.accounts = .success(data)
-            }
-        }
-        
-        fetchFromNetwork()
-    }
-    
     private func fetchFromNetwork() {
         repository.fetchAccounts(page: self.nextPage) { [weak self] result in
             switch result {
