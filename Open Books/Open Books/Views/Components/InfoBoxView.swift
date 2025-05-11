@@ -1,5 +1,5 @@
 //
-//  InfoCardView.swift
+//  InfoBoxView.swift
 //  Open Books
 //
 //  Created by Jan Janovec on 11.05.2025.
@@ -7,11 +7,12 @@
 
 import SwiftUI
 
-struct InfoCardView: View {
-    let title: String
-    let description: String
-    let image: String
-    
+struct InfoBoxView: View {
+    var title: String
+    var description: String
+    var image: String
+    var tint: Color = .accentColor
+
     var body: some View {
         VStack(alignment: .center, spacing: 16) {
             Image(systemName: image)
@@ -19,12 +20,12 @@ struct InfoCardView: View {
                 .scaledToFit()
                 .frame(width: 50, height: 50)
                 .padding()
-                .foregroundStyle(Color.accentColor)
-            
+                .foregroundStyle(tint)
+
             VStack(alignment: .center, spacing: 8) {
                 Text(title)
                     .font(.headline)
-                
+
                 Text(description)
                     .font(.subheadline)
                     .multilineTextAlignment(.center)
@@ -33,15 +34,18 @@ struct InfoCardView: View {
         }
         .frame(maxWidth: .infinity)
         .padding()
-        .background(Color(.systemGray6))
-        .cornerRadius(10)
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(tint.opacity(0.1))
+        )
     }
 }
 
 #Preview {
-    InfoCardView(
+    InfoBoxView(
         title: "Sample Title",
         description: "Sample Description",
-        image: "star"
+        image: "star",
+        tint: Color.blue
     )
 }
