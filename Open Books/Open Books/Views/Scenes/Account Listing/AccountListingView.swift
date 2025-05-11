@@ -10,6 +10,7 @@ import SwiftUI
 
 struct AccountListingView: View {
     @ObservedObject var viewModel: AccountListingViewModel = Container.shared.accountListingViewModel()
+    @State private var isAboutSheetPresented = false
     
     var body: some View {
         ScrollView {
@@ -49,9 +50,23 @@ struct AccountListingView: View {
             viewModel.onAppear()
         }
         .navigationTitle("Browse Accounts")
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    isAboutSheetPresented = true
+                } label: {
+                    Image(systemName: "info.circle")
+                }
+            }
+        }
+        .sheet(isPresented: $isAboutSheetPresented) {
+            AboutView()
+        }
     }
 }
 
 #Preview {
-    AccountListingView()
+    NavigationStack {
+        AccountListingView()
+    }
 }
