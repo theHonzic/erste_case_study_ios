@@ -29,3 +29,9 @@ final class AboutViewModel: ObservableObject {
     }
 }
 
+// MARK: - Dependency Injection
+extension Container {
+    var aboutViewModel: Factory<AboutViewModel> {
+        self { AboutViewModel() }
+    }
+}

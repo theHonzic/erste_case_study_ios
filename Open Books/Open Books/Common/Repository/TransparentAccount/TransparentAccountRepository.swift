@@ -8,8 +8,26 @@
 import Factory
 import Foundation
 
-final class TransparentAccountRepository: TransparentAccountRepositoryType {
-    private let apiManager: TransparentAccountAPIManaging = Container.shared.transparentAccountAPIManager.resolve()
+final class TransparentAccountRepository {
+    private let apiManager: TransparentAccountAPIManaging = Container.shared.transparentAccountAPIManager()
+    private let persistenceManager: TransparentAccountPersistenceManaging = Container.shared.transparentAccountPersistenceManager()
+}
+
+extension TransparentAccountRepository: TransparentAccountRepositoryType {
+    func fetchCachedAccounts(completion: @escaping (Result<PaginatedData<TransparentAccount>, any Error>) -> Void) {
+        persistenceManager.getAccounts { result in
+            switch result {
+            case .success(let accounts):
+                completion(.success(.singlePage(accounts)))
+            case .failure(let error):
+                completion(.failure(error))
+            }
+        }
+    }
+    
+    func fetchCachedAccountDetails(accountId: String, completion: @escaping (Result<TransparentAccount?, any Error>) -> Void) {
+        persistenceManager.getAccount(withId: accountId, completion: completion)
+    }
     
     func fetchHealthCheck(completion: @escaping (Result<Bool, Error>) -> Void) {
         return apiManager.fetchHealthCheck(completion: completion)
@@ -20,10 +38,13 @@ final class TransparentAccountRepository: TransparentAccountRepositoryType {
             .fetchTransparentAccounts(page: page, size: .DEFAULT_PAGE_SIZE) { result in
                 switch result {
                 case .success(let response):
+                    // Save accounts to persistence
+                    try? self.persistenceManager.saveAccounts(response.accounts.compactMap { .init(from: $0) })
+                    
                     completion(
                         .success(
                             .init(
-                                items: response.accounts.compactMap { $0.toDomain() },
+                                items: response.accounts.compactMap { .init(from: $0) },
                                 pageNumber: response.pageNumber,
                                 pageSize: response.pageSize,
                                 pageCount: response.pageCount,
@@ -42,10 +63,13 @@ final class TransparentAccountRepository: TransparentAccountRepositoryType {
         apiManager.fetchTransparentAccountDetails(accountId: accountId) { result in
             switch result {
             case .success(let response):
-                guard let account = response.toDomain() else {
+                guard let account = TransparentAccount(from: response) else {
                     completion(.failure(APIError.currencyIsMissing))
                     return
                 }
+                
+                // Save account to persistence
+                try? self.persistenceManager.saveAccount(account)
                 
                 completion(.success(account))
             case .failure(let error):

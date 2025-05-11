@@ -16,4 +16,5 @@ struct AccountDTO: Decodable {
     let description: String?
     let note: String?
     let iban: String
+    let actualizationDate: Date
 }

@@ -15,23 +15,24 @@ struct TransparentAccount {
     let accountNumber: String
     let bankCode: String
     let balance: Amount
+    let actualizationDate: Date
 }
 
 // MARK: - Mapping
-extension AccountDTO {
-    func toDomain() -> TransparentAccount? {
-        guard let currency = currency else {
+
+extension TransparentAccount {
+    init?(from apiModel: AccountDTO) {
+        guard let currency = apiModel.currency else {
             return nil
         }
         
-        return TransparentAccount(
-            name: name,
-            description: description,
-            note: note,
-            iban: iban,
-            accountNumber: accountNumber,
-            bankCode: bankCode,
-            balance: .init(value: balance, currency: .getByCode(currency))
-        )
+        self.name = apiModel.name
+        self.description = apiModel.description
+        self.note = apiModel.note
+        self.iban = apiModel.iban
+        self.accountNumber = apiModel.accountNumber
+        self.bankCode = apiModel.bankCode
+        self.balance = .init(value: apiModel.balance, currency: .getByCode(currency))
+        self.actualizationDate = apiModel.actualizationDate
     }
 }

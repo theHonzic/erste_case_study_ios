@@ -9,10 +9,21 @@ import Alamofire
 import Foundation
 
 final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
+    let decoder: JSONDecoder = {
+            let decoder = JSONDecoder()
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss"
+            dateFormatter.timeZone = TimeZone(identifier: "CET")
+            
+            decoder.dateDecodingStrategy = .formatted(dateFormatter)
+            
+            return decoder
+        }()
     func fetchTransparentAccounts(page: Int, size: Int, completion: @escaping (Result<AccountPagedResponseDTO, any Error>) -> Void) {
         AF.request(TransparentAccountEndpoint.accounts.path, headers: .defaultHeaders)
             .validate()
-            .responseDecodable(of: AccountPagedResponseDTO.self) { response in
+            .responseDecodable(of: AccountPagedResponseDTO.self, decoder: decoder) { response in
                 switch response.result {
                 case .success(let accounts):
                     completion(.success(accounts))
@@ -26,7 +37,7 @@ final class TransparentAccountAPIManager: TransparentAccountAPIManaging {
     func fetchTransparentAccountDetails(accountId: String, completion: @escaping (Result<AccountDTO, any Error>) -> Void) {
         AF.request(TransparentAccountEndpoint.account(id: accountId).path, headers: .defaultHeaders)
             .validate()
-            .responseDecodable(of: AccountDTO.self) { response in
+            .responseDecodable(of: AccountDTO.self, decoder: decoder) { response in
                 switch response.result {
                 case .success(let account):
                     completion(.success(account))
