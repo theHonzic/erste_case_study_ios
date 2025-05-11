@@ -7,83 +7,77 @@
 
 import SwiftUI
 
-struct FeatureHighlight: Identifiable {
-    let id = UUID()
-    let icon: String
-    let title: String
-    let description: String
-}
-
 struct FeatureHighlightBox: View {
-    var title: String
-    var icon: String
-    var features: [FeatureHighlight]
-    var tint: Color
-
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // Header
             HStack {
-                Image(systemName: icon)
+                Image(systemName: "sparkles")
                     .font(.title2)
-                    .foregroundColor(tint)
-
-                Text(title)
+                    .foregroundColor(.accentColor)
+                
+                Text("Features")
                     .font(.headline)
-
+                
                 Spacer()
             }
-
+            
             // Dynamic feature rows
             VStack(alignment: .leading, spacing: 12) {
-                ForEach(features) { feature in
-                    FeatureRow(feature: feature, tint: tint)
-                }
+                FeatureRow(
+                    title: "Browse Transparent Accounts",
+                    icon: "list.bullet",
+                    description: "Explore a list of transparent accounts listed on Česká Spořitelna API."
+                )
+                FeatureRow(
+                    title: "View Account Details",
+                    icon: "doc.plaintext",
+                    description: "Get detailed information about each transparent account."
+                )
+                FeatureRow(
+                    title: "Fetch Transactions",
+                    icon: "arrow.right.circle",
+                    description: "Retrieve transactions for a specific transparent account."
+                )
+                FeatureRow(
+                    title: "Offline Support",
+                    icon: "bolt.fill",
+                    description: "Access previously fetched account data even when offline."
+                )
+                    
             }
         }
         .padding()
         .background(
             RoundedRectangle(cornerRadius: 16)
-                .fill(tint.opacity(0.1))
+                .fill(Color.accentColor.opacity(0.1))
         )
     }
 }
 
 // Individual feature row view
 private struct FeatureRow: View {
-    let feature: FeatureHighlight
-    let tint: Color
-
+    let title: String
+    let icon: String
+    let description: String
+    
     var body: some View {
         HStack(alignment: .top, spacing: 12) {
-            Image(systemName: feature.icon)
+            Image(systemName: icon)
                 .font(.title3)
-                .foregroundColor(tint)
+                .foregroundColor(.accentColor)
                 .frame(width: 24)
-
+            
             VStack(alignment: .leading, spacing: 4) {
-                Text(feature.title)
+                Text(title)
                     .font(.subheadline)
                     .fontWeight(.medium)
-
-                Text(feature.description)
+                
+                Text(description)
                     .font(.caption)
                     .foregroundColor(.secondary)
             }
         }
     }
 }
-
-#Preview {
-    FeatureHighlightBox(
-        title: "Feature Highlights",
-        icon: "star.fill",
-        features: [
-            FeatureHighlight(icon: "plus.circle", title: "Add Account", description: "Quickly add a new account."),
-            FeatureHighlight(icon: "pencil.circle", title: "Edit Account", description: "Modify existing account details."),
-            FeatureHighlight(icon: "trash.circle", title: "Delete Account", description: "Remove an account from your list.")
-        ],
-        tint: .accentColor
-    )
-        .padding()
-} 
