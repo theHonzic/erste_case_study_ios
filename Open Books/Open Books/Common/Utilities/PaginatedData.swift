@@ -32,4 +32,26 @@ extension PaginatedData {
     var isLastPage: Bool {
         return nextPage == nil
     }
+    
+    static func empty() -> PaginatedData<T> {
+        return PaginatedData(
+            items: [],
+            pageNumber: 0,
+            pageSize: 0,
+            pageCount: 0,
+            nextPage: nil,
+            recordCount: 0
+        )
+    }
+    
+    static func singlePage(_ items: [T]) -> PaginatedData<T> {
+        return PaginatedData(
+            items: items,
+            pageNumber: 1,
+            pageSize: items.count,
+            pageCount: 1,
+            nextPage: nil,
+            recordCount: items.count
+        )
+    }
 }
