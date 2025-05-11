@@ -37,4 +37,6 @@ struct Configuration {
         
         return key
     }()
+    
+    static let repositoryURL: URL = .init(string: "https://github.com/theHonzic/erste_case_study_ios")!
 }

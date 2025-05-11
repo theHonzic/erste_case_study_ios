@@ -6,4 +6,4 @@
 //
 
 BASE_URL = https:/$()/webapi.developers.erstegroup.com/api/csas/public/sandbox/v3/transparentAccounts
-API_KEY = YOUR_API_KEY
+API_KEY = cc6cd4d9-e3b3-4262-a5ea-75e9f137253a
