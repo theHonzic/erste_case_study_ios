@@ -15,9 +15,7 @@ struct ContentView: View {
                 .navigationDestination(for: Screen.self) { screen in
                     switch screen {
                     case .accountDetails(let accountId):
-                        AccountDetailsView()
-                    case .donation(let accountId):
-                        DonationView()
+                        AccountDetailsView(accountId: accountId)
                     }
                 }
         }
