@@ -11,8 +11,8 @@ import RealmSwift
 protocol TransparentAccountPersistenceManaging {
     func saveAccount(_ account: TransparentAccount) throws
     func saveAccounts(_ accounts: [TransparentAccount]) throws
-    func getAccount(withId id: String) throws -> TransparentAccount?
-    func getAccounts() throws -> [TransparentAccount]
+    func getAccount(withId id: String, completion: @escaping (Result<TransparentAccount?, Error>) -> Void)
+    func getAccounts(completion: @escaping (Result<[TransparentAccount], Error>) -> Void)
     func clearAccounts() throws
 }
 

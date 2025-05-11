@@ -37,22 +37,32 @@ extension TransparentAccountPersistenceManager: TransparentAccountPersistenceMan
         }
     }
     
-    func getAccount(withId id: String) throws -> TransparentAccount? {
+    func getAccount(withId id: String, completion: @escaping (Result<TransparentAccount?, Error>) -> Void) {
         guard let realm = realm else {
-            throw PersistenceError.realmInitializationFailed
+            completion(.failure(PersistenceError.realmInitializationFailed))
+            return
         }
         
-        let accountEntity = realm.object(ofType: AccountEntity.self, forPrimaryKey: id)
-        return accountEntity.map { TransparentAccount(from: $0) }
+        completion(.success(
+            realm.object(ofType: AccountEntity.self, forPrimaryKey: id).map {
+                TransparentAccount(from: $0)
+            })
+        )
     }
     
-    func getAccounts() throws -> [TransparentAccount] {
+    func getAccounts(completion: @escaping (Result<[TransparentAccount], Error>) -> Void) {
         guard let realm = realm else {
-            throw PersistenceError.realmInitializationFailed
+            completion(.failure(PersistenceError.realmInitializationFailed))
+            return
         }
         
-        let accountEntities = realm.objects(AccountEntity.self)
-        return accountEntities.compactMap { TransparentAccount(from: $0) }
+        completion(.success(
+            realm.objects(AccountEntity.self).compactMap {
+                TransparentAccount(from: $0)
+            }.sorted(by: { lhs, rhs in
+                lhs.actualizationDate > rhs.actualizationDate
+            }))
+        )
     }
     
     func clearAccounts() throws {

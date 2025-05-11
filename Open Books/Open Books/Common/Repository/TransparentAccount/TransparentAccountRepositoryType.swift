@@ -12,6 +12,9 @@ protocol TransparentAccountRepositoryType {
     func fetchHealthCheck(completion: @escaping (Result<Bool, Error>) -> Void)
     func fetchAccounts(page: Int, completion: @escaping (Result<PaginatedData<TransparentAccount>, Error>) -> Void)
     func fetchAccountDetails(accountId: String, completion: @escaping (Result<TransparentAccount, Error>) -> Void)
+    
+    func fetchCachedAccounts(completion: @escaping (Result<PaginatedData<TransparentAccount>, Error>) -> Void)
+    func fetchCachedAccountDetails(accountId: String, completion: @escaping (Result<TransparentAccount?, Error>) -> Void)
 }
 
 // Mark: - Dependency Injection
