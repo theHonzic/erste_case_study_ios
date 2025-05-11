@@ -15,6 +15,7 @@ struct TransparentAccount {
     let accountNumber: String
     let bankCode: String
     let balance: Amount
+    let actualizationDate: Date
 }
 
 // MARK: - Mapping
@@ -32,5 +33,6 @@ extension TransparentAccount {
         self.accountNumber = apiModel.accountNumber
         self.bankCode = apiModel.bankCode
         self.balance = .init(value: apiModel.balance, currency: .getByCode(currency))
+        self.actualizationDate = apiModel.actualizationDate
     }
 }

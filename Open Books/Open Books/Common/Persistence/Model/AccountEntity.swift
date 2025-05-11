@@ -5,6 +5,7 @@
 //  Created by Jan Janovec on 09.05.2025.
 //
 
+import Foundation
 import RealmSwift
 
 final class AccountEntity: Object {
@@ -16,41 +17,22 @@ final class AccountEntity: Object {
     @Persisted var description_: String?
     @Persisted var note: String?
     @Persisted var iban: String
-    
-    init(
-        accountNumber: String,
-        bankCode: String,
-        balance: Amount,
-        name: String,
-        description: String?,
-        note: String?,
-        iban: String
-    ) {
-        super.init()
-        
-        self.accountNumber = accountNumber
-        self.bankCode = bankCode
-        self.balance = balance.value
-        self.currency = balance.currency.code
-        self.name = name
-        self.description_ = description
-        self.note = note
-        self.iban = iban
-    }
+    @Persisted var actualizationDate: Date
 }
 
 // MARK: - Mapping
 extension AccountEntity {
     convenience init(from domainModel: TransparentAccount) {
-        self.init(
-            accountNumber: domainModel.accountNumber,
-            bankCode: domainModel.bankCode,
-            balance: domainModel.balance,
-            name: domainModel.name,
-            description: domainModel.description,
-            note: domainModel.note,
-            iban: domainModel.iban
-        )
+        self.init()
+        self.accountNumber = domainModel.accountNumber
+        self.bankCode = domainModel.bankCode
+        self.balance = domainModel.balance.value
+        self.currency = domainModel.balance.currency.code
+        self.name = domainModel.name
+        self.description_ = domainModel.description
+        self.note = domainModel.note
+        self.iban = domainModel.iban
+        self.actualizationDate = domainModel.actualizationDate
     }
 }
 
@@ -63,5 +45,6 @@ extension TransparentAccount {
         self.description = entity.description_
         self.note = entity.note
         self.iban = entity.iban
+        self.actualizationDate = entity.actualizationDate
     }
 }
