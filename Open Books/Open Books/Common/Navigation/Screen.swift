@@ -7,16 +7,7 @@
 
 import Foundation
 
-enum Screen: Identifiable {
+enum Screen: Hashable {
     case accountDetails(id: String)
     case donation(id: String)
-    
-    var id: String {
-        switch self {
-        case .accountDetails(let id):
-            return "accountDetails-\(id)"
-        case .donation(let id):
-            return "donation-\(id)"
-        }
-    }
 }
