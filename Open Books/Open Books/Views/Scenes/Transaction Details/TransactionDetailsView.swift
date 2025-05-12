@@ -8,8 +8,26 @@
 import SwiftUI
 
 struct TransactionDetailsView: View {
-    var transaction: Transaction
+    @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel: TransactionDetailsViewModel
+    
+    init(transaction: Transaction) {
+        self._viewModel = .init(wrappedValue: .init(transaction: transaction))
+    }
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            Color.red
+                .navigationTitle("Transaction Details")
+                .navigationBarTitleDisplayMode(.inline)
+                .toolbar {
+                    ToolbarItem(placement: .navigationBarTrailing) {
+                        Button {
+                            dismiss()
+                        } label: {
+                            Text("Done")
+                        }
+                    }
+                }
+        }
     }
 }
