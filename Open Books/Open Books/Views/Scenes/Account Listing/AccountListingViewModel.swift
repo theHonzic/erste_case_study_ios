@@ -12,7 +12,6 @@ final class AccountListingViewModel: ObservableObject {
     @Published var accounts: UiState<PaginatedData<TransparentAccount>> = .loading
     @Published var isErrorMessageVisible = false
     
-    private let isDataInitialized: Bool = false
     private var nextPage: Int {
         guard case let .success(data, _) = accounts else { return 0 }
         return data.nextPage ?? 0
