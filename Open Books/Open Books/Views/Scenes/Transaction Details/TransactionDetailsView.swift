@@ -16,18 +16,38 @@ struct TransactionDetailsView: View {
     }
     var body: some View {
         NavigationView {
-            Color.red
-                .navigationTitle("Transaction Details")
-                .navigationBarTitleDisplayMode(.inline)
-                .toolbar {
-                    ToolbarItem(placement: .navigationBarTrailing) {
-                        Button {
-                            dismiss()
-                        } label: {
-                            Text("Done")
-                        }
+            ScrollView {
+                switch viewModel.transaction {
+                case .loading:
+                    TransactionDetailsSuccessView(
+                        transaction: .mock
+                    )
+                    .redacted(reason: .placeholder)
+                    .disabled(true)
+                case .error(let error):
+                    InfoBoxView(
+                        title: "Something went wrong",
+                        description: error.localizedDescription,
+                        image: "exclamationmark.triangle.fill",
+                        tint: .red
+                    )
+                case .success(let transaction, _):
+                    TransactionDetailsSuccessView(
+                        transaction: transaction
+                    )
+                }
+            }
+            .navigationTitle("Transaction Details")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done")
                     }
                 }
+            }
         }
     }
 }
