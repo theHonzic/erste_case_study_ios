@@ -15,7 +15,7 @@ struct AccountListingView: View {
     var body: some View {
         ScrollView {
             VStack(spacing: 16) {
-                FeatureHighlightBox()
+                FeatureHighlightBoxView()
                 .padding(.horizontal)
                 
                 // Account list

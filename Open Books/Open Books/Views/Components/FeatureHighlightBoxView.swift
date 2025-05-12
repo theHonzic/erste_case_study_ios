@@ -1,5 +1,5 @@
 //
-//  FeatureHighlightBox.swift
+//  FeatureHighlightBoxView.swift
 //  Open Books
 //
 //  Created by Jan Janovec on 11.05.2025.
@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct FeatureHighlightBox: View {
+struct FeatureHighlightBoxView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {

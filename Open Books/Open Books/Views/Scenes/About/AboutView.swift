@@ -6,7 +6,7 @@ struct AboutView: View {
     var body: some View {
         NavigationStack {
             VStack(spacing: 16) {
-                FeatureHighlightBox()
+                FeatureHighlightBoxView()
                 
                 Spacer()
                 
