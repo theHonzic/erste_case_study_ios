@@ -64,7 +64,7 @@ struct AccountRowView: View {
             }
             .padding()
             .background {
-                RoundedRectangle(cornerRadius: 16)
+                RoundedRectangle(cornerRadius: 12)
                     .fill(Color(.systemBackground))
                     .shadow(color: .black.opacity(0.05), radius: 8, x: 0, y: 2)
             }

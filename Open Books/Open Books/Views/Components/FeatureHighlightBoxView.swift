@@ -50,7 +50,7 @@ struct FeatureHighlightBoxView: View {
         }
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 16)
+            RoundedRectangle(cornerRadius: 12)
                 .fill(Color.accentColor.opacity(0.1))
         )
     }

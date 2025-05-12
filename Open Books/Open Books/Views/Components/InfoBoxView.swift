@@ -35,7 +35,7 @@ struct InfoBoxView: View {
         .frame(maxWidth: .infinity)
         .padding()
         .background(
-            RoundedRectangle(cornerRadius: 10)
+            RoundedRectangle(cornerRadius: 12)
                 .fill(tint.opacity(0.1))
         )
     }
