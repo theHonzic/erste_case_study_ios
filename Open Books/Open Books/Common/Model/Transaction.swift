@@ -81,11 +81,11 @@ extension Transaction: Hashable {
     
     static func == (lhs: Transaction, rhs: Transaction) -> Bool {
         return lhs.sender.accountNumber == rhs.sender.accountNumber &&
-            lhs.sender.bankCode == rhs.sender.bankCode &&
-            lhs.receiver.accountNumber == rhs.receiver.accountNumber &&
-            lhs.receiver.bankCode == rhs.receiver.bankCode &&
-            lhs.amount.value == rhs.amount.value &&
-            lhs.processingDate == rhs.processingDate
+        lhs.sender.bankCode == rhs.sender.bankCode &&
+        lhs.receiver.accountNumber == rhs.receiver.accountNumber &&
+        lhs.receiver.bankCode == rhs.receiver.bankCode &&
+        lhs.amount.value == rhs.amount.value &&
+        lhs.processingDate == rhs.processingDate
     }
 }
 
@@ -93,4 +93,37 @@ extension Transaction: Identifiable {
     var id: String {
         return "\(sender.accountNumber)-\(sender.bankCode)-\(receiver.accountNumber)-\(receiver.bankCode)-\(amount.value)-\(processingDate)"
     }
+}
+
+// MARK: - Mock
+extension Transaction {
+    static let mock = Transaction(
+        amount: .init(value: 1000.0, currency: .czk),
+        type: "Payment",
+        dueDate: Date(),
+        processingDate: Date(),
+        sender: AccountHolder(
+            accountNumber: "1234567890",
+            bankCode: "0800",
+            iban: "CZ6508000000192000145399",
+            specificSymbol: nil,
+            specificSymbolParty: nil,
+            variableSymbol: nil,
+            constantSymbol: nil,
+            name: "Jan Novák",
+            description: "Platba za služby"
+        ),
+        receiver: AccountHolder(
+            accountNumber: "0987654321",
+            bankCode: "0800",
+            iban: "CZ6508000000192000145399",
+            specificSymbol: nil,
+            specificSymbolParty: nil,
+            variableSymbol: nil,
+            constantSymbol: nil,
+            name: "Marie Nováková",
+            description: "Platba za služby"
+        ),
+        typeDescription: "Platba za služby"
+    )
 }

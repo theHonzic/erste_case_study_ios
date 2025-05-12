@@ -8,8 +8,46 @@
 import SwiftUI
 
 struct TransactionDetailsView: View {
-    var transaction: Transaction
+    @Environment(\.dismiss) var dismiss
+    @StateObject var viewModel: TransactionDetailsViewModel
+    
+    init(transaction: Transaction) {
+        self._viewModel = .init(wrappedValue: .init(transaction: transaction))
+    }
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            ScrollView {
+                switch viewModel.transaction {
+                case .loading:
+                    TransactionDetailsSuccessView(
+                        transaction: .mock
+                    )
+                    .redacted(reason: .placeholder)
+                    .disabled(true)
+                case .error(let error):
+                    InfoBoxView(
+                        title: "Something went wrong",
+                        description: error.localizedDescription,
+                        image: "exclamationmark.triangle.fill",
+                        tint: .red
+                    )
+                case .success(let transaction, _):
+                    TransactionDetailsSuccessView(
+                        transaction: transaction
+                    )
+                }
+            }
+            .navigationTitle("Transaction Details")
+            .navigationBarTitleDisplayMode(.inline)
+            .toolbar {
+                ToolbarItem(placement: .navigationBarTrailing) {
+                    Button {
+                        dismiss()
+                    } label: {
+                        Text("Done")
+                    }
+                }
+            }
+        }
     }
 }
