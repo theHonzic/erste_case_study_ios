@@ -1,5 +1,5 @@
 //
-//  AccountRowView.swift
+//  TransactionRowView.swift
 //  Open Books
 //
 //  Created by Jan Janovec on 11.05.2025.
@@ -7,59 +7,52 @@
 
 import SwiftUI
 
-struct AccountRowView: View {
-    var account: TransparentAccount
+struct TransactionRowView: View {
+    var transaction: Transaction
+    var onTap: () -> Void
+    
     @State private var isPressed = false
     
     var body: some View {
-        NavigationLink(value: Screen.accountDetails(id: account.accountNumber)) {
+        Button {
+            onTap()
+        } label: {
             VStack(alignment: .leading, spacing: 12) {
-                // Header with name and balance
                 HStack(alignment: .top) {
-                    // Account icon and name
                     HStack(spacing: 12) {
                         Circle()
                             .fill(Color.accentColor.opacity(0.1))
                             .frame(width: 40, height: 40)
                             .overlay {
-                                Image(systemName: "building.columns.fill")
+                                Image(systemName: "banknote")
                                     .foregroundColor(.accentColor)
                             }
                         
                         VStack(alignment: .leading, spacing: 4) {
-                            Text(account.name)
+                            Text(transaction.sender.description ?? transaction.sender.name ?? "\(transaction.sender.accountNumber)/\(transaction.sender.bankCode)")
                                 .font(.headline)
                                 .foregroundColor(.primary)
                                 .lineLimit(1)
                             
-                            Text(account.iban)
+                            Text(transaction.sender.iban)
                                 .font(.caption)
                                 .foregroundColor(.secondary)
                         }
+                        .multilineTextAlignment(.leading)
                     }
                     
                     Spacer()
                     
-                    // Balance
                     VStack(alignment: .trailing, spacing: 4) {
-                        Text(account.balance.formattedValue)
+                        Text(transaction.amount.formattedValue)
                             .font(.headline)
                             .foregroundColor(.primary)
                         
-                        Text(account.actualizationDate.formatted(date: .abbreviated, time: .omitted))
+                        Text(transaction.processingDate.formatted(date: .abbreviated, time: .omitted))
                             .font(.caption2)
                             .foregroundColor(.secondary)
                     }
-                }
-                
-                // Description if available
-                if let description = account.description {
-                    Text(description)
-                        .font(.subheadline)
-                        .foregroundColor(.secondary)
-                        .multilineTextAlignment(.leading)
-                        .lineLimit(2)
-                        .padding(.leading, 52) // Align with the name
+                    .multilineTextAlignment(.trailing)
                 }
             }
             .padding()
@@ -78,13 +71,4 @@ struct AccountRowView: View {
                 .onEnded { _ in isPressed = false }
         )
     }
-}
-
-#Preview {
-    VStack(spacing: 16) {
-        AccountRowView(account: .mock)
-        AccountRowView(account: .mock)
-    }
-    .padding()
-    .background(Color(.systemGroupedBackground))
 }
