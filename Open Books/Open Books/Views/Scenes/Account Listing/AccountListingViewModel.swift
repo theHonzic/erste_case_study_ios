@@ -13,7 +13,9 @@ final class AccountListingViewModel: ObservableObject {
     @Published var isErrorMessageVisible = false
     
     private var nextPage: Int {
-        guard case let .success(data, _) = accounts else { return 0 }
+        guard case let .success(data, _) = accounts else {
+            return 0
+        }
         return data.nextPage ?? 0
     }
     
@@ -41,9 +43,13 @@ extension AccountListingViewModel {
     }
     
     func onLoadMore() {
-        guard case let .success(data, _) = accounts else { return }
+        guard case let .success(data, _) = accounts else {
+            return
+        }
         
-        guard !data.isLastPage else { return }
+        guard !data.isLastPage else {
+            return
+        }
         
         fetchFromNetwork()
     }
@@ -55,7 +61,13 @@ extension AccountListingViewModel {
         repository.fetchAccounts(page: self.nextPage) { [weak self] result in
             switch result {
             case .success(let data):
-                self?.accounts = .success(data, !data.isLastPage)
+                var oldAccounts = PaginatedData<TransparentAccount>.empty()
+                if case .success(let accounts, _) = self?.accounts {
+                    oldAccounts = accounts
+                }
+                let updatedAccounts = oldAccounts.updateWithNewPage(data)
+                self?.accounts = .success(updatedAccounts, !updatedAccounts.isLastPage)
+                
                 
             case .failure(let error):
                 // If we’ve already got a .success payload, leave it

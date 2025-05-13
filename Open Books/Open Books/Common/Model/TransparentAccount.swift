@@ -45,7 +45,7 @@ extension TransparentAccount {
         iban: "CZ6508000000192000145399",
         accountNumber: "1234567890",
         bankCode: "0800",
-        balance: .init(value: 10000.0, currency: .czk),
+        balance: .init(value: 10_000.0, currency: .czk),
         actualizationDate: Date()
     )
     
@@ -57,7 +57,7 @@ extension TransparentAccount {
             iban: "CZ6508000000192000145399",
             accountNumber: "1234567890",
             bankCode: "0800",
-            balance: .init(value: 10000.0, currency: .czk),
+            balance: .init(value: 10_000.0, currency: .czk),
             actualizationDate: Date()
         ),
         .init(
@@ -67,7 +67,7 @@ extension TransparentAccount {
             iban: "CZ6508000000192000145400",
             accountNumber: "1234567891",
             bankCode: "0800",
-            balance: .init(value: 20000.0, currency: .czk),
+            balance: .init(value: 20_000.0, currency: .czk),
             actualizationDate: Date()
         ),
         .init(
@@ -77,7 +77,7 @@ extension TransparentAccount {
             iban: "CZ6508000000192000145401",
             accountNumber: "1234567892",
             bankCode: "0800",
-            balance: .init(value: 30000.0, currency: .czk),
+            balance: .init(value: 30_000.0, currency: .czk),
             actualizationDate: Date()
         ),
         .init(
@@ -87,7 +87,7 @@ extension TransparentAccount {
             iban: "CZ6508000000192000145402",
             accountNumber: "1234567893",
             bankCode: "0800",
-            balance: .init(value: 40000.0, currency: .czk),
+            balance: .init(value: 40_000.0, currency: .czk),
             actualizationDate: Date()
         ),
         .init(
@@ -97,7 +97,7 @@ extension TransparentAccount {
             iban: "CZ6508000000192000145403",
             accountNumber: "1234567894",
             bankCode: "0800",
-            balance: .init(value: 50000.0, currency: .czk),
+            balance: .init(value: 50_000.0, currency: .czk),
             actualizationDate: Date()
         )
     ]

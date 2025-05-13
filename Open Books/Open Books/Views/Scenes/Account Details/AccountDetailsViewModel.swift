@@ -15,7 +15,9 @@ final class AccountDetailsViewModel: ObservableObject {
     private let repository: TransparentAccountRepositoryProtocol
     
     private var nextPage: Int {
-        guard case .success(let transactions, _) = transactions else { return 0 }
+        guard case .success(let transactions, _) = transactions else {
+            return 0
+        }
         return transactions.nextPage ?? 0
     }
     
@@ -50,9 +52,13 @@ extension AccountDetailsViewModel {
     }
     
     func onLoadMoreTransactions(accountId: String) {
-        guard case .success(let transactions, _) = transactions else { return }
+        guard case .success(let transactions, _) = transactions else {
+            return
+        }
         
-        guard !transactions.isLastPage else { return }
+        guard !transactions.isLastPage else {
+            return
+        }
         
         fetchTransactions(accountId: accountId)
     }
@@ -65,7 +71,13 @@ extension AccountDetailsViewModel {
             .fetchAccountTransactions(accountId: accountId, page: nextPage) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self?.transactions = .success(data, !data.isLastPage)
+                    var oldTransactions = PaginatedData<Transaction>.empty()
+                    if case .success(let transactions, _) = self?.transactions {
+                        oldTransactions = transactions
+                    }
+                    let updatedTransactions = oldTransactions.updateWithNewPage(data)
+                    self?.transactions = .success(updatedTransactions, !updatedTransactions.isLastPage)
+                    
                 case .failure(let error):
                     self?.transactions = .error(error)
                 }

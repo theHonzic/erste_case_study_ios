@@ -98,7 +98,7 @@ extension Transaction: Identifiable {
 // MARK: - Mock
 extension Transaction {
     static let mock = Transaction(
-        amount: .init(value: 1000.0, currency: .czk),
+        amount: .init(value: 1_000.0, currency: .czk),
         type: "Payment",
         dueDate: Date(),
         processingDate: Date(),

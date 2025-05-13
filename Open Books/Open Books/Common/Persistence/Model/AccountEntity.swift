@@ -14,7 +14,7 @@ final class AccountEntity: Object {
     @Persisted var balance: Double
     @Persisted var currency: String
     @Persisted var name: String
-    @Persisted var description_: String?
+    @Persisted var accountDescription: String?
     @Persisted var note: String?
     @Persisted var iban: String
     @Persisted var actualizationDate: Date
@@ -29,7 +29,7 @@ extension AccountEntity {
         self.balance = domainModel.balance.value
         self.currency = domainModel.balance.currency.code
         self.name = domainModel.name
-        self.description_ = domainModel.description
+        self.accountDescription = domainModel.description
         self.note = domainModel.note
         self.iban = domainModel.iban
         self.actualizationDate = domainModel.actualizationDate
@@ -42,7 +42,7 @@ extension TransparentAccount {
         self.bankCode = entity.bankCode
         self.balance = Amount(value: entity.balance, currency: .getByCode(entity.currency))
         self.name = entity.name
-        self.description = entity.description_
+        self.description = entity.accountDescription
         self.note = entity.note
         self.iban = entity.iban
         self.actualizationDate = entity.actualizationDate

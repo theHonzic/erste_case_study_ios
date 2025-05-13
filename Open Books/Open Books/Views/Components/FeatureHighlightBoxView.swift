@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct FeatureHighlightBoxView: View {
-    
     var body: some View {
         VStack(alignment: .leading, spacing: 16) {
             // Header
@@ -45,7 +44,6 @@ struct FeatureHighlightBoxView: View {
                     icon: "bolt.fill",
                     description: "Access previously fetched account data even when offline."
                 )
-                    
             }
         }
         .padding()

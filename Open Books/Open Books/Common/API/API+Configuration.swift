@@ -15,5 +15,5 @@ extension HTTPHeaders {
 }
 
 extension Int {
-    static let DEFAULT_PAGE_SIZE = 50
+    static let defaultPageSize = 50
 }

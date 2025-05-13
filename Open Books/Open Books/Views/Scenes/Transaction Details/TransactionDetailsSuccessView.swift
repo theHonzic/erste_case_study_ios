@@ -58,7 +58,7 @@ extension TransactionDetailsSuccessView {
                         ("Amount", transaction.amount.formattedValue),
                         ("Type", transaction.typeDescription),
                         ("Due Date", transaction.dueDate.formatted()),
-                        ("Processing Date", transaction.processingDate.formatted()),
+                        ("Processing Date", transaction.processingDate.formatted())
                     ]
                 )
                 makeDictionaryContainer(
