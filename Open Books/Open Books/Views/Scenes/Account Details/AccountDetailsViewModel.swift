@@ -71,7 +71,13 @@ extension AccountDetailsViewModel {
             .fetchAccountTransactions(accountId: accountId, page: nextPage) { [weak self] result in
                 switch result {
                 case .success(let data):
-                    self?.transactions = .success(data, !data.isLastPage)
+                    var oldTransactions = PaginatedData<Transaction>.empty()
+                    if case .success(let transactions, _) = self?.transactions {
+                        oldTransactions = transactions
+                    }
+                    let updatedTransactions = oldTransactions.updateWithNewPage(data)
+                    self?.transactions = .success(updatedTransactions, !updatedTransactions.isLastPage)
+                    
                 case .failure(let error):
                     self?.transactions = .error(error)
                 }

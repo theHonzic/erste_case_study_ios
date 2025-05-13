@@ -61,7 +61,13 @@ extension AccountListingViewModel {
         repository.fetchAccounts(page: self.nextPage) { [weak self] result in
             switch result {
             case .success(let data):
-                self?.accounts = .success(data, !data.isLastPage)
+                var oldAccounts = PaginatedData<TransparentAccount>.empty()
+                if case .success(let accounts, _) = self?.accounts {
+                    oldAccounts = accounts
+                }
+                let updatedAccounts = oldAccounts.updateWithNewPage(data)
+                self?.accounts = .success(updatedAccounts, !updatedAccounts.isLastPage)
+                
                 
             case .failure(let error):
                 // If we’ve already got a .success payload, leave it
