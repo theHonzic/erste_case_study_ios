@@ -1,10 +1,9 @@
 # Erste iOS Mobile Case Study
 
 ## 🎨 Screenshots
-![Simulator Screenshot - iPhone 16 Pro - 2025-05-13 at 18 41 31](https://github.com/user-attachments/assets/59e54cf7-ba91-4f1e-bd71-dcd6745acf6a)
-![Simulator Screenshot - iPhone 16 Pro - 2025-05-13 at 18 41 36](https://github.com/user-attachments/assets/50ff1bec-5598-406c-9727-568eae400aea)
-![Simulator Screenshot - iPhone 16 Pro - 2025-05-13 at 18 41 40](https://github.com/user-attachments/assets/5eaa3d01-5548-4e53-8a0a-e687eba5b6b6)
-![Simulator Screenshot - iPhone 16 Pro - 2025-05-13 at 18 41 27](https://github.com/user-attachments/assets/41717f90-997a-4b63-9b7e-99cfbb978382)
+
+| ![Screenshot 1](https://github.com/user-attachments/assets/59e54cf7-ba91-4f1e-bd71-dcd6745acf6a) | ![Screenshot 2](https://github.com/user-attachments/assets/50ff1bec-5598-406c-9727-568eae400aea) | ![Screenshot 3](https://github.com/user-attachments/assets/5eaa3d01-5548-4e53-8a0a-e687eba5b6b6) | ![Screenshot 4](https://github.com/user-attachments/assets/41717f90-997a-4b63-9b7e-99cfbb978382) |
+|---|---|---|---|
 
 
 ## 🛠️ Tech Stack & Libraries
