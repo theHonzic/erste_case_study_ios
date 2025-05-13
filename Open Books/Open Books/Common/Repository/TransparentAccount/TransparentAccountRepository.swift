@@ -35,7 +35,7 @@ extension TransparentAccountRepository: TransparentAccountRepositoryProtocol {
     
     func fetchAccounts(page: Int, completion: @escaping (Result<PaginatedData<TransparentAccount>, any Error>) -> Void) {
         apiManager
-            .fetchTransparentAccounts(page: page, size: .DEFAULT_PAGE_SIZE) { result in
+            .fetchTransparentAccounts(page: page, size: .defaultPageSize) { result in
                 switch result {
                 case .success(let response):
                     // Save accounts to persistence
@@ -79,7 +79,7 @@ extension TransparentAccountRepository: TransparentAccountRepositoryProtocol {
     }
     
     func fetchAccountTransactions(accountId: String, page: Int, completion: @escaping (Result<PaginatedData<Transaction>, any Error>) -> Void) {
-        apiManager.fetchAccountTransactions(accountId: accountId, page: page, size: .DEFAULT_PAGE_SIZE) { result in
+        apiManager.fetchAccountTransactions(accountId: accountId, page: page, size: .defaultPageSize) { result in
             switch result {
             case .success(let response):
                 completion(

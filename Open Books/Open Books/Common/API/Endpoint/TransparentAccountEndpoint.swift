@@ -9,9 +9,9 @@ import Foundation
 
 enum TransparentAccountEndpoint {
     case healthCheck
-    case accounts(page: Int, size: Int = .DEFAULT_PAGE_SIZE)
+    case accounts(page: Int, size: Int = .defaultPageSize)
     case account(id: String)
-    case transactions(accountId: String, page: Int, size: Int = .DEFAULT_PAGE_SIZE)
+    case transactions(accountId: String, page: Int, size: Int = .defaultPageSize)
 
     var path: URL {
         guard var components = URLComponents(url: Configuration.baseURL, resolvingAgainstBaseURL: false) else {

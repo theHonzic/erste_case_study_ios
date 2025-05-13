@@ -14,4 +14,4 @@ extension Bundle {
         let build = buildVersionNumber ?? "0"
         return "\(release) (\(build))"
     }
-} 
+}

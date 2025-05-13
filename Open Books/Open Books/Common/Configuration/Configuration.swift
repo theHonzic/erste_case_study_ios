@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct Configuration {
+enum Configuration {
     enum ConfigKey: String {
         case apiKey = "API_KEY"
         case baseURL = "BASE_URL"
@@ -38,5 +38,6 @@ struct Configuration {
         return key
     }()
     
+    // swiftlint:disable:next force_unwrapping
     static let repositoryURL: URL = .init(string: "https://github.com/theHonzic/erste_case_study_ios")!
 }
